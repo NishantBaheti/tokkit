@@ -1,0 +1,52 @@
+[project]
+name = "tokkit" # Required
+dynamic = ["version"]
+description = "This is description"
+readme = "readme.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE.txt" }
+keywords = ["tokkit"] # Optional
+authors = [
+    {name = "Nishant Baheti", email =  "nishantbaheti.it19@gmail.com"},
+]
+
+classifiers = [
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Build Tools",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3 :: Only",
+    "Intended Audience :: Data Science/AI Research",
+    "Intended Audience :: Developers",
+]
+
+dependencies = [
+    "Cython==3.0.12"
+]
+
+[project.optional-dependencies] # Optional
+dev = [
+    "tokkit",
+    "pylint==3.0.3",
+    "pip-tools==7.3.0",
+    "black==25.1.0"
+]
+
+test = [
+    "tokkit[dev]"
+]
+
+# List URLs that are relevant to your project
+[project.urls] # Optional
+
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8", "wheel", "Cython"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+# For smarter version schemes and other configuration options,
+# check out https://github.com/pypa/setuptools_scm
+# version_scheme = "no-guess-dev"
+
+[tool.setuptools.packages.find]
+where = ["src"]
