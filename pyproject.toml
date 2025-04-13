@@ -4,7 +4,7 @@ dynamic = ["version"]
 description = "This is description"
 readme = "readme.md"
 requires-python = ">=3.10"
-license = { file = "LICENSE.txt" }
+license = { file = "LICENSE" }
 keywords = ["tokkit"] # Optional
 authors = [
     {name = "Nishant Baheti", email =  "nishantbaheti.it19@gmail.com"},

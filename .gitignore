@@ -176,3 +176,4 @@ cython_debug/
 .vscode
 
 src/tokkit/bindings/*.cpp
+*.whl
