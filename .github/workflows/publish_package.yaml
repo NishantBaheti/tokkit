@@ -32,6 +32,7 @@ jobs:
         CIBW_BUILD: "cp310-* cp311-* cp312-*"
         CIBW_SKIP: "*-musllinux*"
         CIBW_ARCHS_LINUX: x86_64
+        CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
         # 👇 Inject g++-13 into Linux builds only
         CIBW_BEFORE_BUILD_LINUX: |
           apt-get update && apt-get install -y g++-13
