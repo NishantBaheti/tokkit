@@ -16,7 +16,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3 :: Only",
-    "Intended Audience :: Data Science/AI Research",
+    "Intended Audience :: Science/Research",
     "Intended Audience :: Developers",
 ]
 
