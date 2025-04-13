@@ -1,5 +1,5 @@
 rm ./run.so
-g++-13 -std=c++23 -Wall -O2 \
+g++ -std=c++17 -Wall -O2 \
     ./src/tokkit/cpp/data.cpp \
     ./src/tokkit/cpp/tokenizer.cpp \
     ./src/tokkit/cpp/run.cpp \

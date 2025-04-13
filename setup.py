@@ -4,7 +4,7 @@ from setuptools.command.build_ext import build_ext
 from Cython.Build import cythonize
 from Cython.Compiler import Options
 
-os.environ["CXX"] = "g++-13"
+# os.environ["CXX"] = "g++-13"
 Options.docstrings = True
 
 extensions = [
@@ -21,7 +21,7 @@ extensions = [
         ],
         language="c++",  # Important: tell setuptools to use a C++ compiler
         extra_compile_args=[
-            "-std=c++23"
+            "-std=c++17"
         ],  # Or c++17/c++20, if needed
     )
 ]
