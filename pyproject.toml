@@ -38,6 +38,9 @@ test = [
 
 # List URLs that are relevant to your project
 [project.urls] # Optional
+"Homepage" = "https://github.com/nishantbaheti/tokkit"
+"Bug Reports" = "https://github.com/nishantbaheti/tokkit/issues"
+"Source" = "https://github.com/nishantbaheti/tokkit/"
 
 [build-system]
 requires = ["setuptools>=64", "setuptools_scm>=8", "wheel", "Cython"]
