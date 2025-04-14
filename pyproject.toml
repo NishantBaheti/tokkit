@@ -105,9 +105,7 @@ repair-wheel-command = "auditwheel repair -w {dest_dir} {wheel}"
 [tool.cibuildwheel.macos]
 archs = ["arm64", "universal2"] 
 repair-wheel-command = "delocate-wheel --require-archs {delocate_archs} -w {dest_dir} -v {wheel}"
-environment = {
-    LDFLAGS = ""
-}
+environment = { LDFLAGS = "" }
 
 [tool.cibuildwheel.windows]
 
