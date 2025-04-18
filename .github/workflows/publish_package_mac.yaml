@@ -10,7 +10,7 @@ on:
 jobs:
   deploy:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -27,6 +27,23 @@ jobs:
     - name: Build macos wheels with cibuildwheel
       run: |
         cibuildwheel --output-dir dist --platform macos
+
+    - name: Store artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: cibw-sdist
+        path: dist/*
+
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Download artifacts
+      uses: actions/download-artifact@v4
+      with:
+        pattern: cibw-*
+        path: dist
+        merge-multiple: true
 
     - name: Publish to PyPI
       if: github.event_name == 'release'
