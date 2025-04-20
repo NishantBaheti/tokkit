@@ -14,6 +14,7 @@ cdef extern from "tokenizer.h" namespace "bytepairtokenizer":
         int size()
         void fit(vector[int]& corpus, int maxVocabSize, int nIter)
         vector[int] encode(string s)
+        vector[int] encodeCorpus(vector[int]& corpus)
         string decode(vector[int] encoded)
 
 

@@ -12,38 +12,6 @@ struct MostFreqPair
     int freq;
 };
 
-void printStringVector(vector<string> vec)
-{
-    for (string s : vec)
-    {
-        std::cout << s << std::endl;
-    }
-}
-
-void pringString(string s, int nChar)
-{
-    int size = s.size();
-    int printSize = std::min(size, nChar);
-    for (int i = 0; i < printSize; i++)
-    {
-        std::cout << int(s[i]) << std::endl;
-    }
-    std::cout << std::endl;
-}
-
-void printStatsMap(DTYPE_BYTEPAIR_STATS stats)
-{
-    // Iterate using C++17 facilities
-    for (const auto& [key, value] : stats)
-        std::cout << "[" << key[0] << "-" << key[1] << "] = " << value << "; ";
-}
-
-void printVocab(DTYPE_BYTEPAIR_VOCAB vocab)
-{
-    for (const auto& [key, value] : vocab)
-        std::cout << "[" << key[0] << "-" << key[1] << "] = " << value << "; ";
-}
-
 std::vector<string> splitString(string& str)
 {
     std::vector<string> vec;
@@ -113,7 +81,10 @@ void updateVocab(DTYPE_BYTEPAIR_VOCAB& vocab, DTYPE_BYTEPAIR_REV_VOCAB& revVocab
     }
 }
 
-void mergeCorpus(vector<int>& corpus, DTYPE_BYTEPAIR_VOCAB& vocab, DTYPE_BYTEPAIR_REV_VOCAB& revVocab, int& nextVocabIndex, int& vocabSize)
+/// @brief Merge Corpus with vocab of bytepairs
+/// @param corpus 
+/// @param vocab
+void mergeCorpus(vector<int>& corpus, DTYPE_BYTEPAIR_VOCAB& vocab)
 {
     while (1)
     {
@@ -159,6 +130,11 @@ namespace bytepairtokenizer
         return vocabSize;
     }
     BytePairTokenizer::~BytePairTokenizer() {}
+
+    /// @brief Fit tokenizer
+    /// @param corpus corpus array
+    /// @param maxVocabSize Maximum vocab size
+    /// @param nIter Maximum number of iterations
     void BytePairTokenizer::fit(vector<int>& corpus, int maxVocabSize, int nIter)
     {
         int originalSize = corpus.size();
@@ -183,8 +159,7 @@ namespace bytepairtokenizer
             {
                 break;
             }
-
-            mergeCorpus(corpus, vocab, revVocab, nextVocabIndex, vocabSize);
+            mergeCorpus(corpus, vocab);
             int newSize = corpus.size();
             std::cout << newSize << " " << originalSize << " " << (originalSize - newSize) * 100 / originalSize << "%" << endl;
         }
@@ -197,13 +172,19 @@ namespace bytepairtokenizer
         {
             encoded.push_back(c);
         }
-        mergeCorpus(encoded, vocab, revVocab, nextVocabIndex, vocabSize);
+        mergeCorpus(encoded, vocab);
         for (int i : encoded)
         {
             std::cout << i << " ";
         }
         std::cout << std::endl;
         return encoded;
+    }
+
+    vector<int> BytePairTokenizer::encodeCorpus(vector<int>& corpus)
+    {
+        mergeCorpus(corpus, vocab);
+        return corpus;
     }
 
     string _decodeRecursive(int token, DTYPE_BYTEPAIR_REV_VOCAB& revVocab)

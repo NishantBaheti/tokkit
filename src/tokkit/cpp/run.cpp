@@ -2,6 +2,7 @@
 #include "dtypes.h"
 #include "data.h"
 #include "tokenizer.h"
+#include "utils.h"
 
 using namespace std;
 
@@ -13,7 +14,11 @@ int main()
     // pringString(corpus, 1000);
 
     bytepairtokenizer::BytePairTokenizer bpe;
-    bpe.fit(corpus, 1000, 100);
+    bpe.fit(corpus, 1000, 10);
+
+    corpus = bpe.encodeCorpus(corpus);
+    printVector(corpus, 100);
+    
     std::vector<int> encoded = bpe.encode("Hello My Name is Nishant");
     string decoded = bpe.decode(encoded);
     std::cout << decoded << endl;

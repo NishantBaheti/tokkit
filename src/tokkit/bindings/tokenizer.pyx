@@ -19,6 +19,9 @@ cdef class PyBytePairTokenizer:
     
     def encode(self, string input_string):
         return self.c_bpt.encode(input_string)
+
+    def encode_corpus(self, vector[int] input_corpus):
+        return self.c_bpt.encodeCorpus(input_corpus)
     
     def decode(self, vector[int] encoded):
         return self.c_bpt.decode(encoded)
