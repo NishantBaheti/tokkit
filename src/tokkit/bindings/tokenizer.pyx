@@ -26,7 +26,7 @@ cdef class PyBytePairTokenizer:
     
     def decode(self, vector[int] encoded):
         cdef string decoded  = self.c_bpt.decode(encoded)
-        return decoded.decode("utf-8")
+        return decoded.decode("utf-8", errors="replace")
     
 
 def data_loader(str filepath):
