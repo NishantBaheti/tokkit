@@ -168,9 +168,9 @@ namespace bytepairtokenizer
     vector<int> BytePairTokenizer::encode(string s)
     {
         vector<int> encoded;
-        for (char c : s)
+        for (unsigned char c : s)
         {
-            encoded.push_back(c);
+            encoded.push_back(static_cast<int>(c));
         }
         mergeCorpus(encoded, vocab);
         for (int i : encoded)
@@ -191,7 +191,7 @@ namespace bytepairtokenizer
     {
         if (token < 256)
         {
-            return string(1, token);
+            return string(1, static_cast<char>(token));
         }
         DTYPE_BYTEPAIR pair = revVocab[token];
         return _decodeRecursive(pair[0], revVocab) + _decodeRecursive(pair[1], revVocab);

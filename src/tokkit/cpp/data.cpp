@@ -22,7 +22,7 @@ std::vector<int> data::dataLoader(string filepath)
         string line;
         while (getline(corpusFile, line))
         {
-            for (char c : line)
+            for (unsigned char c : line)
             {
                 corpus.push_back(c);
             }
@@ -47,7 +47,7 @@ void data::dataSaver(std::vector<int> &corpus, string filepath)
     {
         for (int i : corpus)
         {
-            corpusFile << static_cast<char>(i);
+            corpusFile << string(1, static_cast<char>(i));
         }
     }
     corpusFile.close();

@@ -17,19 +17,23 @@ cdef class PyBytePairTokenizer:
     def fit(self, vector[int] corpus, int  max_vocab_size, int n_iter):
         self.c_bpt.fit(corpus, max_vocab_size, n_iter)
     
-    def encode(self, string input_string):
-        return self.c_bpt.encode(input_string)
+    def encode(self, str input_string):
+        cdef string c_input_string = input_string.encode("utf-8")
+        return self.c_bpt.encode(c_input_string)
 
     def encode_corpus(self, vector[int] input_corpus):
         return self.c_bpt.encodeCorpus(input_corpus)
     
     def decode(self, vector[int] encoded):
-        return self.c_bpt.decode(encoded)
+        cdef string decoded  = self.c_bpt.decode(encoded)
+        return decoded.decode("utf-8")
     
 
-def data_loader(string filepath):
-    return dataLoader(filepath)
+def data_loader(str filepath):
+    cdef string c_filepath = filepath.encode("utf-8")
+    return dataLoader(c_filepath)
 
 
-def data_saver(vector[int] corpus, string filepath):
+def data_saver(vector[int] corpus, str filepath):
+    cdef string c_filepath = filepath.encode("utf-8")
     dataSaver(corpus, filepath)
