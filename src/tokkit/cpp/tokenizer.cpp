@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <set>
 #include <string>
 #include "dtypes.h"
@@ -152,7 +153,7 @@ namespace bytepairtokenizer
                 cout << "Nothing to Merge";
                 break;
             }
-            updateVocab(this->vocab, revVocab, mostFreqPair.pair, nextVocabIndex, vocabSize);
+            updateVocab(vocab, revVocab, mostFreqPair.pair, nextVocabIndex, vocabSize);
             std::cout << size() << endl;
             // printVocab(bpe.vocab);
             if (size() >= maxVocabSize)
@@ -205,5 +206,29 @@ namespace bytepairtokenizer
             decoded += _decodeRecursive(i, revVocab);
         }
         return decoded;
+    }
+    void BytePairTokenizer::save(const std::string& filepath)
+    {
+        std::ofstream out(filepath);
+        out << vocabSize << " " << nextVocabIndex << "\n";
+        for (const auto& [pair, id] : vocab)
+        {
+            out << pair[0] << " " << pair[1] << " " << id << "\n";
+        }
+        out.close();
+    }
+
+    void BytePairTokenizer::load(const std::string& filepath)
+    {
+        std::ifstream in(filepath);
+        in >> vocabSize >> nextVocabIndex;
+        int a, b, id;
+        while (in >> a >> b >> id)
+        {
+            DTYPE_BYTEPAIR pair = {a, b};
+            vocab[pair] = id;
+            revVocab[id] = pair;
+        }
+        in.close();
     }
 };

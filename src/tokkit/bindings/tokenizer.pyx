@@ -36,4 +36,4 @@ def data_loader(str filepath):
 
 def data_saver(vector[int] corpus, str filepath):
     cdef string c_filepath = filepath.encode("utf-8")
-    dataSaver(corpus, filepath)
+    dataSaver(corpus, c_filepath)

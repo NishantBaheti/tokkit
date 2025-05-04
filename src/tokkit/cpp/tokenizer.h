@@ -1,5 +1,7 @@
 #include <string>
+#include <vector>
 #include "dtypes.h"
+#pragma once
 
 using namespace std;
 
@@ -17,5 +19,7 @@ namespace bytepairtokenizer {
             vector<int> encode(string s);
             vector<int> encodeCorpus(vector<int>& corpus);
             string decode(vector<int> encoded);
+            void save(const string& filepath);
+            void load(const string& filepath);
     };
 }

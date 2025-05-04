@@ -16,6 +16,9 @@ int main()
     bytepairtokenizer::BytePairTokenizer bpe;
     bpe.fit(corpus, 1000, 10);
 
+    bpe.save("saved.bin");
+    bpe.load("saved.bin");
+
     corpus = bpe.encodeCorpus(corpus);
     printVector(corpus, 100);
     

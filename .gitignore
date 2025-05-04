@@ -177,3 +177,7 @@ cython_debug/
 
 src/tokkit/bindings/*.cpp
 *.whl
+
+*.pkl
+*.pth
+*.bin
