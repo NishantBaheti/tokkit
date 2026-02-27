@@ -8,7 +8,7 @@ using namespace std;
 
 int main()
 {   
-    string path = "/workspaces/tokkit/datasets/raw/combined.txt";
+    string path = "./datasets/raw/combined.txt";
     std::vector<int> corpus = data::dataLoader(path);
     std::cout << corpus.size() << endl;
     // printVector(corpus, 1000);
@@ -22,6 +22,6 @@ int main()
     std::vector<int> encoded = bpe.encode("!#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþ");
     string decoded = bpe.decode(encoded);
     std::cout << decoded << endl;
-    data::dataSaver(corpus, "/workspaces/tokkit/datasets/processed/merged_data.txt");
+    data::dataSaver(corpus, "./datasets/processed/merged_data.txt");
     return 0;
 }
